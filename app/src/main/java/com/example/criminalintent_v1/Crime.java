@@ -9,9 +9,20 @@ public class Crime {
     private String mTitle;
     private Date mDate;
     private boolean mSolved;
+
+    private boolean mRequirespolice;
     public Crime() {
         mId = UUID.randomUUID();
         mDate = new Date();
+    }
+    public void setRequirespolice(boolean requirespolice)
+    {
+        mRequirespolice = requirespolice;
+    }
+
+    public boolean isRequirespolice()
+    {
+        return mRequirespolice;
     }
     public UUID getId() {
         return mId; }
