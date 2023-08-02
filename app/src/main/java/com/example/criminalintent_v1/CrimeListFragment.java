@@ -12,6 +12,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.zip.Inflater;
 
@@ -119,7 +121,10 @@ public class CrimeListFragment extends Fragment {
         {
             mCrime = crime;
             mTitleTextView.setText(mCrime.getTitle());
-            mDateTextView.setText(mCrime.getDate().toString());
+            Date date = mCrime.getDate();
+            SimpleDateFormat sdf=  new SimpleDateFormat("EEE, MMM dd, yyyy");
+            String dateString = sdf.format(date);
+            mDateTextView.setText(dateString);
             mSolvedImageView.setVisibility(mCrime.isSolved() ? View.VISIBLE : View.INVISIBLE);
         }
     }
