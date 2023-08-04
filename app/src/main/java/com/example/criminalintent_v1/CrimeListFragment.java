@@ -21,6 +21,8 @@ public class CrimeListFragment extends Fragment {
    private RecyclerView mCrimeRecyclerView;
    private CrimeAdapter mCrimeAdapter;
 
+   private int mLastClickedCrimeItem;
+
 
 
    @Override
@@ -51,7 +53,7 @@ public class CrimeListFragment extends Fragment {
        mCrimeRecyclerView.setAdapter(mCrimeAdapter);}
 
        else
-           mCrimeAdapter.notifyDataSetChanged();
+           mCrimeAdapter.notifyItemChanged(mLastClickedCrimeItem);
    }
 
     private class CrimeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
@@ -125,7 +127,7 @@ public class CrimeListFragment extends Fragment {
         @Override
         public void onClick(View view)
         {
-
+            mLastClickedCrimeItem = getAdapterPosition();
             Intent intent = CrimeActivity.newIntent(getActivity(),mCrime.getId());
             startActivity(intent);
 
