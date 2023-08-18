@@ -1,6 +1,7 @@
 package com.example.criminalintent_v1;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -85,10 +86,19 @@ public class CrimeFragment extends Fragment {
         mDateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FragmentManager manager = getFragmentManager();
-                DatePickerFragment dialog = DatePickerFragment.newInstance(mCrime.getDate());
-                dialog.setTargetFragment(CrimeFragment.this,REQUEST_DATE);
-                dialog.show(manager,DIALOG_DATE);
+
+                if(getResources().getConfiguration().orientation== Configuration.ORIENTATION_PORTRAIT)
+                {
+                    FragmentManager manager = getFragmentManager();
+                    DatePickerFragment dialog = DatePickerFragment.newInstance(mCrime.getDate());
+                    dialog.setTargetFragment(CrimeFragment.this,REQUEST_DATE);
+                    dialog.show(manager,DIALOG_DATE);
+                }
+                else{
+               Intent intent = DatePickerHostActivity.newIntent(getActivity(),mCrime.getDate());
+               startActivityForResult(intent,REQUEST_DATE);
+                }
+
             }
         });
 
