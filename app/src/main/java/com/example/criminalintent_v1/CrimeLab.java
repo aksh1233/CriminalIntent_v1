@@ -42,4 +42,8 @@ public class CrimeLab {
         }
         return null;
     }
+    public void delete(Crime c)
+    {
+        mCrimes.remove(c);
+    }
 }
